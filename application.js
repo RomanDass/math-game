@@ -5,29 +5,30 @@ let operatorArr = ['+','-','/','*'];
 //math
 //random number
 function randomizeNum(num) {
-  return math.ciel(Math.random * num)
+  return Math.ceil(Math.random() * num)
 };
 //question
 function questionGenerator() {
   let question = {};
   let num1 = randomizeNum(numberLimit);
   let num2 = randomizeNum(numberLimit);
-  let oprRandom = operatorArr[randomizeNum(4)];
+  let oprRandom = operatorArr[randomizeNum(3)];
 
-  if(oprRandom = '+') {
+  if(oprRandom === '+') {
     question.answer = num1 + num2
-  } else if(oprRandom = '-') {
+  } else if(oprRandom === '-') {
     question.answer = num1 - num2
   } else if(oprRandom = '/') {
     question.answer = num1 / num2
-  } else if(oprRandom = '*') {
+  } else if(oprRandom === '*') {
     question.answer = num1 * num2
   } else {
     console.log('question gen error')
   };
 
   question.equation = String(num1) + oprRandom + String(num2);
-  $('#equation').text(currentQuestion.equation);
+  return question
+  //$('#equation').text(currentQuestion.equation);
 };
 //timer
 //start game
