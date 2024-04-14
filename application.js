@@ -2,7 +2,8 @@ $(document).ready(function() {
   //variable init
   let score = [];
   let numberLimit = 10;
-  let operatorArr = ['+','-','/','*'];
+  const operatorArr = ['+','-','/','*'];
+  let timeLeft = 60
   let currentQuestion
   //random number
   function randomizeNum(num) {
@@ -41,7 +42,21 @@ $(document).ready(function() {
     if(userInput === answer) {
       renderNewQuestion();
       $('#user-input').val('');
+      addTime(+1)
     }
+  }
+
+  const interval = setInterval(function () {
+    addTime(-1);
+    $('#time-left').text(timeLeft);
+    if (timeLeft === 0) {
+      clearInterval(interval);
+    }
+  }, 1000);
+
+  const addTime = function(ammount) {
+    timeLeft += ammount;
+    $('#time-left').text(timeLeft);
   }
   //timer
   //start game
