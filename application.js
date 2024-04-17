@@ -1,6 +1,6 @@
 $(document).ready(function() {
   //variable init
-  let score = [];
+  let score = 0;
   let numberLimit = 10;
   const operatorArr = ['+','-','/','*'];
   let timeLeft = 60;
@@ -45,21 +45,15 @@ $(document).ready(function() {
       renderNewQuestion();
       $('#user-input').val('');
       addTime(+1)
+      updateScore(+1);
     }
-  }
-
-  /*const interval = setInterval(function () {
-    addTime(-1);
-    $('#time-left').text(timeLeft);
-    if (timeLeft === 0) {
-      clearInterval(interval);
-    }
-  }, 1000);*/
+  };
 
   const startGame = function() {
     if (!interval) {
       if (timeLeft === 0) {
         addTime(10);
+        updateScore(-score)
       };
       interval = setInterval(function() {
         addTime(-1);
@@ -76,10 +70,12 @@ $(document).ready(function() {
     timeLeft += ammount;
     $('#time-left').text(timeLeft);
   }
-  //timer
-  //start game
-  //correct answer
-  //wrong answer
+
+  const updateScore = function(ammount) {
+    score += ammount;
+    $('#score').text(score)
+  }
+
   //event listeners
   $(document).on('click', '#start-button', function() {});
   $(document).on('click', '#quit-button', function() {});
