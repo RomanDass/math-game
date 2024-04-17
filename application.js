@@ -3,11 +3,13 @@ $(document).ready(function() {
   let score = [];
   let numberLimit = 10;
   const operatorArr = ['+','-','/','*'];
-  let timeLeft = 60
-  let currentQuestion
+  let timeLeft = 60;
+  let currentQuestion;
+  let interval;
+
   //random number
   function randomizeNum(num) {
-    return Math.ceil(Math.random() * num)
+    return Math.ceil(Math.random() * num);
   };
   //question
   const questionGenerator = function() {
@@ -46,13 +48,29 @@ $(document).ready(function() {
     }
   }
 
-  const interval = setInterval(function () {
+  /*const interval = setInterval(function () {
     addTime(-1);
     $('#time-left').text(timeLeft);
     if (timeLeft === 0) {
       clearInterval(interval);
     }
-  }, 1000);
+  }, 1000);*/
+
+  const startGame = function() {
+    if (!interval) {
+      if (timeLeft === 0) {
+        addTime(10);
+      };
+      interval = setInterval(function() {
+        addTime(-1);
+        //$('#time-left').text(timeLeft);
+        if (timeLeft === 0) {
+          clearInterval(interval);
+          interval = undefined;
+        };
+      }, 1000);
+    };
+  };
 
   const addTime = function(ammount) {
     timeLeft += ammount;
@@ -66,6 +84,7 @@ $(document).ready(function() {
   $(document).on('click', '#start-button', function() {});
   $(document).on('click', '#quit-button', function() {});
   $('#user-input').on('input', function () {
+    startGame();
     checkAnswer(Number($(this).val()), currentQuestion.answer);
   });
   
