@@ -21,8 +21,14 @@ $(document).ready(function() {
     if(oprRandom === '+') {
       question.answer = num1 + num2;
     } else if(oprRandom === '-') {
+      if (num1 < num2) {
+        let temp = num1;
+        num1 = num2;
+        num2 = temp;
+      }
       question.answer = num1 - num2;
     } else if(oprRandom = '/') {
+      num1 = num2 * randomizeNum(numberLimit);
       question.answer = num1 / num2;
     } else if(oprRandom === '*') {
       question.answer = num1 * num2;
