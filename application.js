@@ -56,10 +56,11 @@ $(document).ready(function() {
   };
 
   const startGame = function() {
-    $('.nl-dom').css('display', 'none')
+    $('.nl-dom').css('display', 'none');
+    $('#end-msg').css('display', 'none')
     if (!interval) {
       if (timeLeft === 0) {
-        addTime(10);
+        addTime(60);
         updateScore(-score)
       };
       interval = setInterval(function() {
@@ -68,7 +69,8 @@ $(document).ready(function() {
         if (timeLeft === 0) {
           clearInterval(interval);
           interval = undefined;
-          
+          $('.nl-dom').css('display', 'block');
+          $('#end-msg').css('display', 'block');
         };
       }, 1000);
     };
