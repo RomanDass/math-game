@@ -56,6 +56,7 @@ $(document).ready(function() {
   };
 
   const startGame = function() {
+    $('.nl-dom').css('display', 'none')
     if (!interval) {
       if (timeLeft === 0) {
         addTime(10);
@@ -67,6 +68,7 @@ $(document).ready(function() {
         if (timeLeft === 0) {
           clearInterval(interval);
           interval = undefined;
+          
         };
       }, 1000);
     };
@@ -89,7 +91,9 @@ $(document).ready(function() {
     startGame();
     checkAnswer(Number($(this).val()), currentQuestion.answer);
   });
-  
+  $(document).on('input', '#number-limit', function() {
+    numberLimit = $(this).val()
+  })
   renderNewQuestion();
 })
   
