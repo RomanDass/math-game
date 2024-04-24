@@ -11,12 +11,15 @@ $(document).ready(function() {
   function randomizeNum(num) {
     return Math.ceil(Math.random() * num);
   };
+  function randomizeOpr(num) {
+    return Math.floor(Math.random() * num);
+  };
   //question
   const questionGenerator = function() {
     let question = {};
     let num1 = randomizeNum(numberLimit);
     let num2 = randomizeNum(numberLimit);
-    let oprRandom = operatorArr[randomizeNum(3)];
+    let oprRandom = operatorArr[randomizeOpr(3)];
 
     if(oprRandom === '+') {
       question.answer = num1 + num2;
@@ -27,7 +30,7 @@ $(document).ready(function() {
         num2 = temp;
       }
       question.answer = num1 - num2;
-    } else if(oprRandom = '/') {
+    } else if(oprRandom === '/') {
       num1 = num2 * randomizeNum(numberLimit);
       question.answer = num1 / num2;
     } else if(oprRandom === '*') {
