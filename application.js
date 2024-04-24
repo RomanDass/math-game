@@ -19,7 +19,7 @@ $(document).ready(function() {
     let question = {};
     let num1 = randomizeNum(numberLimit);
     let num2 = randomizeNum(numberLimit);
-    let oprRandom = operatorArr[randomizeOpr(3)];
+    let oprRandom = operatorArr[randomizeOpr(4)];
 
     if(oprRandom === '+') {
       question.answer = num1 + num2;
